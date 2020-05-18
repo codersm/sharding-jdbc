@@ -1,205 +1,160 @@
-##Sharding-JDBC - A JDBC driver for shard databases and tables
+# [ShardingSphere - Distributed Database Middleware Ecosphere](https://shardingsphere.apache.org/)
 
-`Sharding-JDBC`是当当应用框架`ddframe`中，关系型数据库模块`dd-rdb`中分离出来的数据库水平扩展框架，即透明化数据库分库分表访问。
+**Official website: https://shardingsphere.apache.org/**
 
-`Sharding-JDBC`继`dubbox`和`elastic-job`之后，是`ddframe`系列开源的第三个产品。
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Gitter](https://badges.gitter.im/shardingsphere/shardingsphere.svg)](https://gitter.im/shardingsphere/Lobby)
+[![GitHub release](https://img.shields.io/github/release/apache/shardingsphere.svg)](https://github.com/apache/shardingsphere/releases)
+[![Stargazers over time](https://starchart.cc/apache/shardingsphere.svg)](https://starchart.cc/apache/shardingsphere)
 
-# Release Notes
-* sharding-jdbc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc)
-* sharding-jdbc-core&nbsp;&nbsp;[![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-core)
-* sharding-jdbc-config-yaml&nbsp;&nbsp;[![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-config-yaml/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-config-yaml)
-* sharding-jdbc-config-spring&nbsp;&nbsp;[![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-config-spring/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-config-spring)
-* sharding-jdbc-transaction&nbsp;&nbsp;[![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-transaction/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-transaction)
-* sharding-jdbc-transaction-async-job&nbsp;&nbsp;[![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-transaction-async-job/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dangdang/sharding-jdbc-transaction-async-job)
+[![Build Status](https://api.travis-ci.org/apache/shardingsphere.svg?branch=master&status=created)](https://travis-ci.org/apache/shardingsphere)
+[![Coverage Status](https://coveralls.io/repos/github/apache/shardingsphere/badge.svg?branch=master)](https://coveralls.io/github/apache/shardingsphere?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/278600ed40ad48e988ab485b439abbcd)](https://www.codacy.com/app/terrymanu/sharding-sphere?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sharding-sphere/sharding-sphere&amp;utm_campaign=Badge_Grade)
+[![snyk](https://snyk.io/test/github/apache/shardingsphere/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/apache/shardingsphere?targetFile=pom.xml)
+[![OpenTracing-1.0 Badge](https://img.shields.io/badge/OpenTracing--1.0-enabled-blue.svg)](http://opentracing.io)
+[![Skywalking Tracing](https://img.shields.io/badge/Skywalking%20Tracing-enable-brightgreen.svg)](https://github.com/apache/skywalking)
 
-# License
-[![Hex.pm](http://dangdangdotcom.github.io/sharding-jdbc/img/license.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+## Document
 
-# Build Status
-[![Build Status](https://secure.travis-ci.org/dangdangdotcom/sharding-jdbc.png?branch=master)](https://travis-ci.org/dangdangdotcom/sharding-jdbc)
-[![Coverage Status](https://coveralls.io/repos/dangdangdotcom/sharding-jdbc/badge.svg?branch=master&service=github)](https://coveralls.io/github/dangdangdotcom/sharding-jdbc?branch=master)
+[![EN doc](https://img.shields.io/badge/document-English-blue.svg)](https://shardingsphere.apache.org/document/current/en/overview/)
+[![CN doc](https://img.shields.io/badge/文档-中文版-blue.svg)](https://shardingsphere.apache.org/document/current/cn/overview/)
 
-# 主要贡献者
+## Overview
 
-* 张亮 &nbsp;&nbsp;&nbsp;[当当](http://www.dangdang.com/) zhangliang@dangdang.com
-* 高洪涛 [当当](http://www.dangdang.com/) gaohongtao@dangdang.com
-* 曹昊 &nbsp;&nbsp;&nbsp;[当当](http://www.dangdang.com/) caohao@dangdang.com
-* 岳令 &nbsp;&nbsp;&nbsp;[当当](http://www.dangdang.com/) yueling@dangdang.com
+ShardingSphere is an open-source ecosystem consisted of a set of distributed database middleware solutions, including 2 independent products, ShardingSphere-JDBC & ShardingSphere-Proxy & ShardingSphere-Sidecar (todo). 
+They all provide functions of data sharding, distributed transaction and database orchestration, applicable in a variety of situations such as Java isomorphism, heterogeneous language and cloud native. 
 
-**讨论QQ群：**532576663（不限于Sharding-JDBC，包括分布式，数据库相关以及其他互联网技术交流。由于QQ群已接近饱和，我们希望您在申请加群之前仔细阅读文档，并在加群申请中正确回答问题，以及在申请时写上您的姓名和公司名称。并且在入群后及时修改群名片。否则我们将有权拒绝您的入群申请。谢谢合作。）
+Aiming at reasonably making full use of the computation and storage capacity of the database in a distributed system, ShardingSphere defines itself as a middleware, rather than a totally new type of database. 
+As the cornerstone of many enterprises, relational database still takes a huge market share. 
+Therefore, at the current stage, we prefer to focus on its increment instead of a total overturn.
 
-# 简介
+ShardingSphere had graduated from [Apache Incubator](http://incubator.apache.org/projects/shardingsphere.html) on April 16 2020, is now officially an Apache Project!
+Welcome discuss with community via [shardingsphere dev mail list](mailto:dev@shardingsphere.apache.org).
 
-`Sharding-JDBC`直接封装`JDBC API`，可以理解为增强版的`JDBC`驱动，旧代码迁移成本几乎为零：
+__Apache releases are beginning from version 4.0.0__
 
-* 可适用于任何基于`java`的`ORM`框架，如：`JPA`, `Hibernate`, `Mybatis`, `Spring JDBC Template`或直接使用`JDBC`。
-* 可基于任何第三方的数据库连接池，如：`DBCP`, `C3P0`, `BoneCP`, `Druid`等。
-* 理论上可支持任意实现`JDBC`规范的数据库。虽然目前仅支持`MySQL`，但已有支持`Oracle`，`SQLServer`，`DB2`等数据库的计划。
+![ShardingSphere Scope](https://shardingsphere.apache.org/document/current/img/shardingsphere-scope_en.png)
 
-`Sharding-JDBC`定位为轻量级`java`框架，使用客户端直连数据库，以`jar`包形式提供服务，未使用中间层，无需额外部署，无其他依赖，`DBA`也无需改变原有的运维方式。`SQL`解析使用`Druid`解析器，是目前性能最高的`SQL`解析器。
+### ShardingSphere-JDBC
 
-`Sharding-JDBC`功能灵活且全面：
+[![Maven Status](https://maven-badges.herokuapp.com/maven-central/org.apache.shardingsphere/sharding-jdbc/badge.svg)](https://mvnrepository.com/artifact/org.apache.shardingsphere/sharding-jdbc)
 
-* 分片策略灵活，可支持`=`，`BETWEEN`，`IN`等多维度分片，也可支持多分片键共用。
-* `SQL`解析功能完善，支持聚合，分组，排序，`Limit`，`OR`等查询，并且支持`Binding Table`以及笛卡尔积的表查询。
-* 支持柔性事务(目前仅最大努力送达型)。
-* 支持读写分离。
+ShardingSphere-JDBC defines itself as a lightweight Java framework that provides extra service at Java JDBC layer. 
+With the client end connecting directly to the database, it provides service in the form of jar and requires no extra deployment and dependence. 
+It can be considered as an enhanced JDBC driver, which is fully compatible with JDBC and all kinds of ORM frameworks.
 
-`Sharding-JDBC`配置多样：
+* Applicable in any ORM framework based on JDBC, such as JPA, Hibernate, Mybatis, Spring JDBC Template or direct use of JDBC.
+* Support any third-party database connection pool, such as DBCP, C3P0, BoneCP, Druid, HikariCP.
+* Support any kind of JDBC standard database: MySQL, Oracle, SQLServer, PostgreSQL and any SQL92 followed databases.
 
-* 可支持YAML和Spring命名空间配置
-* 灵活多样的`inline`方式
+![ShardingSphere-JDBC Architecture](https://shardingsphere.apache.org/document/current/img/shardingsphere-jdbc-brief.png)
 
-***
+### ShardingSphere-Proxy
 
-以下是常见的分库分表产品和`Sharding-JDBC`的对比：
+[![Download](https://img.shields.io/badge/release-download-orange.svg)](https://www.apache.org/dyn/closer.cgi?path=shardingsphere/4.1.0/apache-shardingsphere-4.1.0-sharding-proxy-bin.tar.gz)
+[![Docker Pulls](https://img.shields.io/docker/pulls/shardingsphere/sharding-proxy.svg)](https://store.docker.com/community/images/shardingsphere/sharding-proxy)
 
-| 功能          | Cobar         | Cobar-client  | TDDL        | Sharding-JDBC  |
-| ------------- |:-------------:| -------------:| -----------:|---------------:|
-| 分库          | 有            | 有             | 未开源      | 有              |
-| 分表          | 无            | 无             | 未开源      | 有              |
-| 中间层        | 是            | 否             | 否          | 否              |
-| ORM支持       | 任意          | 仅MyBatis      | 任意        | 任意            |
-| 数据库支持     | 仅MySQL       | 任意           | 任意        | 任意            |
-| 异构语言       | 可           | 仅Java          | 仅Java     | 仅Java          |
-| 外部依赖       | 无           | 无              | Diamond    | 无              |
+ShardingSphere-Proxy defines itself as a transparent database proxy, providing a database server that encapsulates database binary protocol to support heterogeneous languages. 
+Friendlier to DBA, the MySQL/PostgreSQL version provided now can use any kind of client access (such as MySQL Command Client, MySQL Workbench, Navicat etc.) that is compatible of MySQL/PostgreSQL protocol to operate data.
 
-***
+* Totally transparent to applications, it can be used directly as MySQL and PostgreSQL.
+* Applicable to any kind of compatible client end that is compatible with MySQL and PostgreSQL protocol.
 
-# 整体架构图
+![ShardingSphere-Proxy Architecture](https://shardingsphere.apache.org/document/current/img/shardingsphere-proxy-brief.png)
 
-![整体架构图](http://dangdangdotcom.github.io/sharding-jdbc/img/architecture.png)
+### ShardingSphere-Sidecar(TODO)
 
-![柔性事务-最大努力送达型](http://dangdangdotcom.github.io/sharding-jdbc/img/architecture-soft-transaction-bed.png)
+ShardingSphere-Sidecar (TODO) defines itself as a cloud native database agent of the Kubernetes environment, in charge of all the access to the database in the form of sidecar. 
+It provides a mesh layer interacting with the database, we call this as `Database Mesh`.
 
-# 相关文档
+Database Mesh emphasizes on how to connect distributed database access application with the database. 
+Focusing on interaction, it effectively organizes the interaction between messy applications and the database. 
+The application and database that use Database Mesh to visit database will form a large grid system, where they just need to be put into the right position accordingly. 
+They are all governed by the mesh layer.
 
-[Release Notes](http://dangdangdotcom.github.io/sharding-jdbc/post/release_notes/)
+![ShardingSphere-Sidecar Architecture](https://shardingsphere.apache.org/document/current/img/shardingsphere-sidecar-brief.png)
 
-[使用指南](http://dangdangdotcom.github.io/sharding-jdbc/post/user_guide/)
+|                         | *ShardingSphere-JDBC* | *ShardingSphere-Proxy* | *ShardingSphere-Sidecar* |
+| ----------------------- | --------------------- | ---------------------- | ------------------------ |
+| Database                | Any                   | MySQL/PostgreSQL       | MySQL/PostgreSQL         |
+| Connections Count Cost  | High                  | Low                    | High                     |
+| Supported Languages     | Java Only             | Any                    | Any                      |
+| Performance             | Low loss              | Relatively High loss   | Low loss                 |
+| Decentralization        | Yes                   | No                     | No                       |
+| Static Entry            | No                    | Yes                    | No                       |
 
-[详细功能列表](http://dangdangdotcom.github.io/sharding-jdbc/post/features/)
+### Hybrid Architecture
 
-[核心概念](http://dangdangdotcom.github.io/sharding-jdbc/post/concepts/)
+ShardingSphere-JDBC adopts decentralized architecture, applicable to high-performance light-weight OLTP application developed with Java; 
+ShardingSphere-Proxy provides static entry and all languages support, applicable for OLAP application and the sharding databases management and operation situation.
 
-[架构图](http://dangdangdotcom.github.io/sharding-jdbc/post/architecture/)
+ShardingSphere is an ecosphere consists of multiple endpoints together.
+Through a mixed use of ShardingSphere-JDBC and ShardingSphere-Proxy and unified sharding strategy by the same registry center, ShardingSphere can build an application system applicable to all kinds of scenarios. 
+Architects can adjust the system architecture to the most applicable one to current business more freely.
 
-[Yaml文件和Spring命名空间配置](http://dangdangdotcom.github.io/sharding-jdbc/post/configuration/)
+![ShardingSphere Hybrid Architecture](https://shardingsphere.apache.org/document/current/img/shardingsphere-hybrid.png)
 
-[基于暗示(Hint)的分片键值注册方法](http://dangdangdotcom.github.io/sharding-jdbc/post/hint_sharding_value/)
+## Features
 
-[读写分离](http://dangdangdotcom.github.io/sharding-jdbc/post/master_slave)
+### Data Sharding
 
-[柔性事务](http://dangdangdotcom.github.io/sharding-jdbc/post/soft_transaction)
+* Database sharding & Table sharding
+* Read-write splitting
+* Sharding strategy customization
+* Centre-less Distributed primary key
 
-[目录结构说明](http://dangdangdotcom.github.io/sharding-jdbc/post/directory_structure)
+### Distributed Transaction
 
-[阅读源码编译问题说明](http://dangdangdotcom.github.io/elastic-job/post/source_code_guide)
+* Unified Transaction API
+* XA transaction
+* BASE transaction
 
-[使用限制](http://dangdangdotcom.github.io/sharding-jdbc/post/limitations/)
+### Database Orchestration
 
-[SQL支持详细列表](http://dangdangdotcom.github.io/sharding-jdbc/post/sql_supported/)
+* Dynamic Configuration
+* Orchestration & Governance
+* Data Encryption
+* Tracing & Observability
+* Elastic scaling out (Planning)
 
-[压力测试报告](http://dangdangdotcom.github.io/sharding-jdbc/post/stress_test/)
+## Project Status
 
-[未来线路规划](http://dangdangdotcom.github.io/sharding-jdbc/post/roadmap/)
+![Status](https://shardingsphere.apache.org/document/current/img/shardingsphere-status_en.png)
 
-[事务支持说明](http://dangdangdotcom.github.io/sharding-jdbc/post/transaction/)
+## How to Build
 
-[InfoQ新闻](http://www.infoq.com/cn/news/2016/01/sharding-jdbc-dangdang)
+### Build ShardingSphere
 
-[CSDN文章](http://geek.csdn.net/news/detail/55513)
-
-# Quick Start
-
-## 引入maven依赖
-
-```xml
-<!-- 引入sharding-jdbc核心模块 -->
-<dependency>
-    <groupId>com.dangdang</groupId>
-    <artifactId>sharding-jdbc-core</artifactId>
-    <version>${latest.release.version}</version>
-</dependency>
+```bash
+./mvnw clean install -Prelease
 ```
 
-## 规则配置
-`Sharding-JDBC`的分库分表通过规则配置描述，请简单浏览配置全貌：
+Artifact:
 
-```java
-ShardingRule shardingRule = ShardingRule.builder()
-        .dataSourceRule(dataSourceRule)
-        .tableRules(tableRuleList)
-        .databaseShardingStrategy(new DatabaseShardingStrategy("sharding_column", new XXXShardingAlgorithm()))
-        .tableShardingStrategy(new TableShardingStrategy("sharding_column", new XXXShardingAlgorithm())))
-        .build();
+```
+shardingsphere-distribution/shardingsphere-jdbc-distribution/target/apache-shardingsphere-${latest.release.version}-shardingsphere-jdbc-bin.tar.gz: Binary package of ShardingSphere-JDBC
+shardingsphere-distribution/shardingsphere-proxy-distribution/target/apache-shardingsphere-${latest.release.version}-shardingsphere-proxy-bin.tar.gz: Binary package of ShardingSphere-Proxy
+shardingsphere-distribution/shardingsphere-src-distribution/target/apache-shardingsphere-${latest.release.version}-src.zip: Source code package of ShardingSphere
 ```
 
-规则配置包括数据源配置、表规则配置、分库策略和分表策略组成。这只是最简单的配置方式，实际使用可更加灵活，如：多分片键，分片策略直接和`tableRule`绑定等。
+### Build ShardingSphere-UI
 
->详细的规则配置请参考[用户指南](http://dangdangdotcom.github.io/sharding-jdbc/post/user_guide/)
-
-## 使用原生JDBC接口
-通过`ShardingDataSourceFactory`工厂和规则配置对象获取`ShardingDataSource`，`ShardingDataSource`实现自`JDBC`的标准接口`DataSource`。然后可通过`DataSource`选择使用原生`JDBC`开发，或者使用`JPA`, `MyBatis`等`ORM`工具。
-以`JDBC`原生实现为例：
-
-```java
-DataSource dataSource = ShardingDataSourceFactory.createDataSource(shardingRule);
-String sql = "SELECT i.* FROM t_order o JOIN t_order_item i ON o.order_id=i.order_id WHERE o.user_id=? AND o.order_id=?";
-try (
-        Connection conn = dataSource.getConnection();
-        PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-    preparedStatement.setInt(1, 10);
-    preparedStatement.setInt(2, 1001);
-    try (ResultSet rs = preparedStatement.executeQuery()) {
-        while(rs.next()) {
-            System.out.println(rs.getInt(1));
-            System.out.println(rs.getInt(2));
-        }
-    }
-}
+```bash
+cd shardingsphere-ui
+./mvnw clean install -Prelease
 ```
 
-## 使用Spring命名空间配置
+Artifact:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:rdb="http://www.dangdang.com/schema/ddframe/rdb" 
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
-                        http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/context 
-                        http://www.springframework.org/schema/context/spring-context.xsd 
-                        http://www.dangdang.com/schema/ddframe/rdb 
-                        http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd 
-                        ">
-    <context:property-placeholder location="classpath:conf/rdb/conf.properties" ignore-unresolvable="true"/>
-    
-    <bean id="dbtbl_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/dbtbl_0"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
-    </bean>
-    <bean id="dbtbl_1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/dbtbl_1"/>
-        <property name="username" value="root"/>
-        <property name="password" value=""/>
-    </bean>
-
-    <rdb:strategy id="orderTableStrategy" sharding-columns="order_id" algorithm-expression="t_order_${order_id.longValue() % 4}"/>
-    <rdb:strategy id="orderItemTableStrategy" sharding-columns="order_id" algorithm-expression="t_order_item_${order_id.longValue() % 4}"/>
-    <rdb:data-source id="shardingDataSource">
-        <rdb:sharding-rule data-sources="dbtbl_0,dbtbl_1">
-            <rdb:table-rules>
-                <rdb:table-rule logic-table="t_order" actual-tables="t_order_${0..3}" table-strategy="orderTableStrategy"/>
-                <rdb:table-rule logic-table="t_order_item" actual-tables="t_order_item_${0..3}" table-strategy="orderItemTableStrategy"/>
-            </rdb:table-rules>
-            <rdb:default-database-strategy sharding-columns="user_id" algorithm-expression="dbtbl_${user_id.longValue() % 2 + 1}"/>
-        </rdb:sharding-rule>
-    </rdb:data-source>
-</beans>
 ```
+shardingsphere-ui/shardingsphere-ui-distribution/shardingsphere-ui-bin-distribution/target/apache-shardingsphere-${latest.release.version}-shardingsphere-ui-bin.tar.gz: Binary package of ShardingSphere-UI
+```
+
+## Landscapes
+
+<p align="center">
+<br/><br/>
+<img src="https://landscape.cncf.io/images/left-logo.svg" width="150"/>&nbsp;&nbsp;<img src="https://landscape.cncf.io/images/right-logo.svg" width="200"/>
+<br/><br/>
+ShardingSphere enriches the <a href="https://landscape.cncf.io/landscape=observability-and-analysis&license=apache-license-2-0">CNCF CLOUD NATIVE Landscape.</a>
+</p>
